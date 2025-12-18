@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="3" total="4" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-09-13T21:30:26 IST" name="Suite" finished-at="2025-09-13T21:30:34 IST" duration-ms="7367">
+    <groups>
+      <group name="ErrorHandling">
+        <method signature="ErrorValidationsTest.LoginErrorVlidation()[pri:0, instance:rahulShettyAcademy.Tests.ErrorValidationsTest@57af006c]" name="LoginErrorVlidation" class="rahulShettyAcademy.Tests.ErrorValidationsTest"/>
+      </group> <!-- ErrorHandling -->
+    </groups>
+    <test started-at="2025-09-13T21:30:26 IST" name="SubmitOrderTest" finished-at="2025-09-13T21:30:26 IST" duration-ms="12">
+    </test> <!-- SubmitOrderTest -->
+    <test started-at="2025-09-13T21:30:26 IST" name="ErrorValidationsTest" finished-at="2025-09-13T21:30:34 IST" duration-ms="7367">
+      <class name="rahulShettyAcademy.Tests.ErrorValidationsTest">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:rahulShettyAcademy.Tests.ErrorValidationsTest@57af006c]" started-at="2025-09-13T21:30:26 IST" name="launchApplication" finished-at="2025-09-13T21:30:33 IST" duration-ms="6718" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method signature="LoginErrorVlidation()[pri:0, instance:rahulShettyAcademy.Tests.ErrorValidationsTest@57af006c]" started-at="2025-09-13T21:30:33 IST" name="LoginErrorVlidation" finished-at="2025-09-13T21:30:34 IST" duration-ms="468" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginErrorVlidation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:rahulShettyAcademy.Tests.ErrorValidationsTest@57af006c]" started-at="2025-09-13T21:30:34 IST" name="tearDown" finished-at="2025-09-13T21:30:34 IST" duration-ms="122" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- rahulShettyAcademy.Tests.ErrorValidationsTest -->
+    </test> <!-- ErrorValidationsTest -->
+  </suite> <!-- Suite -->
+</testng-results>

@@ -1,0 +1,203 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- Every Maven project starts with these basic coordinates -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>RahulShettyAccademy</groupId>   <!-- Your project’s unique group (like package namespace) -->
+  <artifactId>RahulShettyAccademy</artifactId> <!-- Project name -->
+  <version>0.0.1-SNAPSHOT</version>        <!-- Version of this build -->
+  <packaging>jar</packaging>               <!-- Type of artifact to build (jar/war/etc.) -->
+
+  <!-- Common project properties -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Java version settings (compiles with Java 21) -->
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
+
+    <!-- Centralized plugin versions -->
+    <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+    <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
+  </properties>
+
+  <!-- Dependencies: external libraries your project uses -->
+  <dependencies>
+    <!-- Selenium for browser automation -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.35.0</version>
+    </dependency>
+
+    <!-- Apache POI for reading/writing Excel files -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>5.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>5.4.1</version>
+    </dependency>
+
+    <!-- Logging libraries -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.25.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.25.1</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.5.18</version>
+    </dependency>
+
+    <!-- Utility libraries -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.20.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.18.0</version>
+    </dependency>
+
+    <!-- Reporting library -->
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.1.2</version>
+    </dependency>
+
+    <!-- Test framework -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.11.0</version>
+      <scope>test</scope> <!-- used only for test execution -->
+    </dependency>
+
+    <!-- JSON processing -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.19.2</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Build section controls compilation and test execution -->
+  <build>
+    <!-- pluginManagement locks plugin versions (no execution here) -->
+    <pluginManagement>
+      <plugins>
+        <!-- Compiler plugin (controls Java version) -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <release>${maven.compiler.release}</release>
+          </configuration>
+        </plugin>
+
+        <!-- Surefire plugin (runs TestNG/JUnit tests) -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven.surefire.plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <!-- Active plugins actually executed during build -->
+    <plugins>
+      <!-- Compiler plugin uses version above -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <!-- Surefire plugin runs TestNG suites -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testsSuites/testng.xml</suiteXmlFile>
+            <suiteXmlFile>testsSuites/Purchase.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- Profiles allow switching test suites by ID -->
+  <profiles>
+    <!-- Runs the Regression test suite -->
+    <profile>
+      <id>Regression</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>testsSuites/testng.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Runs the Purchase test suite -->
+    <profile>
+      <id>Purchase</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>testsSuites/Purchase.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Runs the Error Validation test suite -->
+    <profile>
+      <id>ErrorValidation</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <suiteXmlFiles>
+                <suiteXmlFile>testsSuites/errorHndling.xml</suiteXmlFile>
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
